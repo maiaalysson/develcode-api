@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,11 +14,11 @@ import com.gabrielmaia.develcode.domain.exception.PictureNotFound;
 @Service
 public class UserPictureStorageService {
 
-	@Value("${spring.web.resources.static-locations}")
-	private Path diretorioPath;
+	private Path diretorioPath = Path.of(System.getProperty("user.dir"));
 
 	private Path getFilePath(String nameFile) {
-		return diretorioPath.resolve(Path.of(nameFile));
+		Path savePath = Path.of(diretorioPath.toAbsolutePath().toString() + "/src/main/resources/static/");
+		return savePath.resolve(Path.of(nameFile)).toAbsolutePath();
 	}
 
 	public void storagePictureInDisk(MultipartFile foto, String nameFile) {
