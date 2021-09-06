@@ -86,4 +86,5 @@ Uso da API no Postman:
         Headers: Key: Accept | Value: application/json      
       
 Software utilizado para testar os end-points : Postman e Navegador.
+
 Testes unitários e documentação(Swagger) não desenvolvidos.
